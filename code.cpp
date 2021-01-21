@@ -1,6 +1,6 @@
-//Consider a system consisting of processes P1, P2, ..., Pn, each of which has a unique priority
-//number. Write a monitor that allocates three identical printers to these processes, using the
-//priority numbers for deciding the order of allocation.
+/*Consider a system consisting of processes P1, P2, ..., Pn, each of which has a unique priority
+number. Write a monitor that allocates three identical printers to these processes, using the
+priority numbers for deciding the order of allocation. */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,9 +12,7 @@
 #include <stdbool.h>
 #define _BSD_SOURCE
 #include <sys/time.h>
-#include <stdio.h>
 #include <pthread.h>
-#include <unistd.h>
 #include <queue>
 #include <iostream>
 #include <algorithm>
@@ -24,7 +22,7 @@
 #define BSIZE 8 // Buffer size
 #define PWT 2 // Producer wait time limit
 #define CWT 10 // Consumer wait time limit
-#define RT 10 
+#define RT 10 // Program run-time in seconds
 
 using namespace std;
 struct pnode{
@@ -51,6 +49,7 @@ class monitor {
 				pthread_cond_wait(&pro, &mutex1);
 				pthread_mutex_lock(&m);
 			}
+
 			*printer_no = printer.front();
 			printer.pop();
 			pthread_mutex_unlock(&m);
@@ -80,6 +79,7 @@ void *callThread(void *arg) {
 	sleep(rand() % 10 + 1);
 	obj.signal(printer_no);
 	printf("Process %d release printer %d\n\n", (int)id, printer_no);
+	return 0;
 }
 
 int main() {
@@ -112,3 +112,4 @@ int main() {
 	pthread_exit(NULL);
 	return 0;
 }
+
