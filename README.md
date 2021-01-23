@@ -28,7 +28,7 @@ for my program I have chosen name "code.cpp".
 #### Step 3
 
 > Hit ctrl+x then y to save your program. <br />
-> Type `g++ name.cpp -o name -lpthread` in order to compile your program.
+> Type `g++ name.cpp -o name -lpthread` in order to compile your program. <br />
 > To execute your program type: `./name`
 
 ![alt text](README/4.jpg)
